@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How I Secure My Laravel + React Apps as a Beginner Developer (Real-World Guide)</title>
+
+    <!-- Basic Meta Tags for SEO -->
+    <meta name="description" content="A beginner-friendly guide to securing Laravel and React apps with practical tips, tools, and real-world lessons from Anas Ahson.">
+    <meta name="keywords" content="Laravel security, React security, beginner developer guide, full-stack security, Laravel Sanctum, DOMPurify, web development">
+    <meta name="author" content="Anas Ahson">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.anasahson.dev/securing-laravel-react">
+
+    <!-- Open Graph for Social Sharing -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="How I Secure My Laravel + React Apps as a Beginner Developer (Real-World Guide)">
+    <meta property="og:description" content="Learn how to secure Laravel and React apps with simple tools, common mistakes, and real-world experiences from beginner developer Anas Ahson.">
+    <meta property="og:image" content="https://www.anasahson.dev/images/laravel-react-security-guide.jpg">
+    <meta property="og:url" content="https://www.anasahson.dev/securing-laravel-react">
+    <meta property="og:site_name" content="Anas Ahson Dev Blog">
+
+    <!-- Twitter Card for Social Sharing -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="How I Secure My Laravel + React Apps as a Beginner Developer (Real-World Guide)">
+    <meta name="twitter:description" content="A practical guide to securing Laravel and React apps for beginners by Anas Ahson.">
+    <meta name="twitter:image" content="https://www.anasahson.dev/images/laravel-react-security-guide.jpg">
+    <meta name="twitter:url" content="https://www.anasahson.dev/securing-laravel-react">
+    <meta name="twitter:creator" content="@anasahson">
+
+    <!-- JSON-LD Structured Data for SEO -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Article",
+            "headline": "How I Secure My Laravel + React Apps as a Beginner Developer (Real-World Guide)",
+            "description": "A beginner-friendly guide to securing Laravel and React apps with practical tips, tools, and real-world lessons from Anas Ahson.",
+            "image": "https://www.anasahson.dev/images/laravel-react-security-guide.jpg",
+            "author": {
+                "@type": "Person",
+                "name": "Anas Ahson",
+                "url": "https://www.anasahson.dev/about",
+                "image": "https://www.anasahson.dev/images/author-anas-ahson.jpg"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "Anas Ahson Dev Blog",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "https://www.anasahson.dev/images/logo.png"
+                }
+            },
+            "datePublished": "2025-04-05",
+            "dateModified": "2025-04-05",
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "https://www.anasahson.dev/securing-laravel-react"
+            },
+            "keywords": "Laravel security, React security, beginner developer, full-stack security"
+        }
+    </script>
+
+    <!-- CSS Styling -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        header {
+            background: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+        .content {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h2, h3 {
+            color: #333;
+        }
+        code {
+            background-color: black;
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: white;
+        }
+        pre {
+            background-color: #2d2d2d;
+            color: #f4f4f4;
+            padding: 20px;
+            border-radius: 4px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-size: 1rem;
+        }
+        pre code {
+            display: block;
+            color: #f4f4f4;
+            font-size: 1rem;
+        }
+        .author-bio {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+            padding: 15px;
+            border-top: 1px solid #eee;
+        }
+        .author-bio img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: #fff;
+        }
+        footer p {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+<!-- Header -->
+<header>
+    <h1>How I Secure My Laravel + React Apps as a Beginner Developer (Real-World Guide)</h1>
+</header>
+
+<!-- Main Content -->
+<div class="content">
+    <p>As a beginner web developer, I <strong>used to overlook security</strong>. I assumed "Laravel handles most of it" or "React is just frontend — no big deal."</p>
+    <p><strong>That changed when my first full-stack app got hit with fake signups and odd requests. Security isn’t optional.</strong></p>
+
+    <h2>Securing Laravel: Lessons from My Mistakes</h2>
+    <h3>1. Laravel Sanctum for Easy API Authentication</h3>
+    <p>Connecting React to Laravel APIs was a mess until I found <strong>Laravel Sanctum</strong>. I struggled with token management, CSRF errors, and unprotected routes.</p>
+    <pre><code>composer require laravel/sanctum</code></pre>
+    <p>In <code>routes/api.php</code>:</p>
+    <pre><code>Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+});</code></pre>
+    <p><strong>Tip:</strong> Test routes with and without tokens. I once skipped middleware, and my endpoint was wide open.</p>
+
+    <h3>2. Composer Security Checker</h3>
+    <p>I used an outdated package with a vulnerability — unknowingly. Now, I run this before deploying:</p>
+    <pre><code>composer require enlightn/security-checker --dev
+php artisan security:check</code></pre>
+    <p><strong>Lesson:</strong> Outdated packages can silently compromise your app.</p>
+
+    <h3>3. Debug Mode in Production</h3>
+    <p>I shipped a project with <code>APP_DEBUG=true</code>, exposing stack traces publicly. Now, I ensure <code>APP_DEBUG=false</code> before every deployment.</p>
+
+    <h2>Securing React: Client-Side Isn’t Safe Either</h2>
+    <h3>1. DOMPurify Against XSS Attacks</h3>
+    <p>My React comment box used <code>dangerouslySetInnerHTML</code>. Someone tested this:</p>
+    <pre><code><script>alert('Hacked!')</script></code></pre>
+    <p>I now sanitize inputs with:</p>
+    <pre><code>import DOMPurify from 'dompurify';
+const cleanHTML = DOMPurify.sanitize(userInput);</code></pre>
+    <p><strong>Takeaway:</strong> Never trust user input, even from logged-in users.</p>
+
+    <h3>2. Axios with CSRF and Tokens</h3>
+    <p>CSRF errors with Laravel Sanctum were brutal. Here’s the fix:</p>
+    <pre><code>axios.get('/sanctum/csrf-cookie').then(() => {
+  axios.post('/login', credentials).then(...);
+});
+axios.defaults.withCredentials = true;</code></pre>
+    <p><strong>Mistake:</strong> Forgetting <code>withCredentials</code> cost me an hour of debugging 401 errors.</p>
+
+    <h2>My Full-Stack Security Habits</h2>
+    <h3>1. Laravel Telescope for Monitoring</h3>
+    <p>In dev mode, Telescope tracks API requests, auth attempts, and failed logins:</p>
+    <pre><code>composer require laravel/telescope --dev
+php artisan telescope:install</code></pre>
+    <p>It caught someone brute-forcing tokens on my API.</p>
+
+    <h3>2. Deployment Security Checklist</h3>
+    <ul>
+        <li>✅ HTTPS enabled</li>
+        <li>✅ <code>APP_DEBUG=false</code></li>
+        <li>✅ <code>.env</code> in <code>.gitignore</code></li>
+        <li>✅ Run <code>php artisan security:check</code></li>
+        <li>✅ DOMPurify on React inputs</li>
+        <li>✅ Axios with <code>withCredentials</code></li>
+        <li>✅ Check headers on <a href="https://securityheaders.com">securityheaders.com</a></li>
+    </ul>
+
+    <h2>Final Thoughts: Security is a Journey</h2>
+    <p><strong>Security isn’t a one-time fix — it’s a skill built over time.</strong> Test like a hacker, patch what breaks, and repeat.</p>
+    <p>Want the codebase? Let me know, and I’ll share it on GitHub!</p>
+
+    <!-- Author Bio Section -->
+    <div class="author-bio">
+        <img src="Anas.png" alt="Anas Ahson Profile Picture">
+        <div>
+            <h3>About the Author: Anas Ahson</h3>
+            <p>Anas Ahson is a beginner web developer passionate about full-stack development with Laravel and React. He shares practical lessons from his coding journey on <a href="https://www.anasahson.dev">anasahson.dev</a>.</p>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer>
+    <p>© 2025 Anas Ahson | All Rights Reserved</p>
+</footer>
+</body>
+</html>
