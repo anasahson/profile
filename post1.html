@@ -168,7 +168,7 @@ php artisan security:check</code></pre>
     <h2>Securing React: Client-Side Isn’t Safe Either</h2>
     <h3>1. DOMPurify Against XSS Attacks</h3>
     <p>My React comment box used <code>dangerouslySetInnerHTML</code>. Someone tested this:</p>
-    <pre><code><script>alert('Hacked!')</script></code></pre>
+
     <p>I now sanitize inputs with:</p>
     <pre><code>import DOMPurify from 'dompurify';
 const cleanHTML = DOMPurify.sanitize(userInput);</code></pre>
@@ -210,7 +210,9 @@ php artisan telescope:install</code></pre>
         <div>
             <h3>About the Author: Anas Ahson</h3>
             <p>Anas Ahson is a beginner web developer passionate about full-stack development with Laravel and React. He shares practical lessons from his coding journey on <a href="#"> anasahson</a>.</p>
+            <a href="https://anasahson.github.io/profile" ><button >Back Home</button> </a>
         </div>
+
     </div>
 </div>
 
