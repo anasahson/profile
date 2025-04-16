@@ -1,224 +1,205 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>How I Secure My Laravel + React Apps as a Beginner Developer (Real-World Guide)</title>
+    <meta name="description" content="A beginner-friendly guide to securing Laravel and React apps with practical tips, tools, and real-world lessons from Anas Ahson." />
+    <meta name="keywords" content="Laravel security, React security, beginner developer guide, full-stack security, Laravel Sanctum, DOMPurify, web development" />
+    <meta name="author" content="Anas Ahson" />
+    <link rel="canonical" href="https://anasahson.github.io/profile/secure-laravel-react-apps-beginner-guide-2025.html" /> <meta property="og:type" content="article">
+    <meta property="og:title" content="How I Secure My Laravel + React Apps as a Beginner Developer (Real-World Guide)" />
+    <meta property="og:description" content="Learn how to secure Laravel and React apps with simple tools, common mistakes, and real-world experiences from beginner developer Anas Ahson." />
+    <meta property="og:image" content="https://anasahson.github.io/profile/Anas.png" /> <meta property="og:url" content="https://anasahson.github.io/profile/secure-laravel-react-apps-beginner-guide-2025.html" /> <meta property="og:site_name" content="Anas Ahson Dev Blog" />
+    <meta property="article:published_time" content="2025-04-05" />
+    <meta property="article:modified_time" content="2025-04-05" /> <meta property="article:author" content="https://anasahson.github.io/profile/" /> <meta property="article:tag" content="Laravel" />
+    <meta property="article:tag" content="React" />
+    <meta property="article:tag" content="Security" />
+    <meta property="article:tag" content="Beginner Guide" />
 
-    <!-- Basic Meta Tags for SEO -->
-    <meta name="description" content="A beginner-friendly guide to securing Laravel and React apps with practical tips, tools, and real-world lessons from Anas Ahson.">
-    <meta name="keywords" content="Laravel security, React security, beginner developer guide, full-stack security, Laravel Sanctum, DOMPurify, web development">
-    <meta name="author" content="Anas Ahson">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://www.anasahson.dev/securing-laravel-react">
-
-    <!-- Open Graph for Social Sharing -->
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="How I Secure My Laravel + React Apps as a Beginner Developer (Real-World Guide)">
-    <meta property="og:description" content="Learn how to secure Laravel and React apps with simple tools, common mistakes, and real-world experiences from beginner developer Anas Ahson.">
-    <meta property="og:image" content="Anas Ahson.jpg">
-    <meta property="og:url" content="https://www.anasahson.dev/securing-laravel-react">
-    <meta property="og:site_name" content="Anas Ahson Dev Blog">
-
-    <!-- Twitter Card for Social Sharing -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="How I Secure My Laravel + React Apps as a Beginner Developer (Real-World Guide)">
     <meta name="twitter:description" content="A practical guide to securing Laravel and React apps for beginners by Anas Ahson.">
-    <meta name="twitter:image" content="https://www.anasahson.dev/images/laravel-react-security-guide.jpg">
-    <meta name="twitter:url" content="https://www.anasahson.dev/securing-laravel-react">
-    <meta name="twitter:creator" content="@anasahson">
+    <meta name="twitter:image" content="https://anasahson.github.io/profile/Anas.png"> <meta name="twitter:creator" content="@anasahson92">
 
-    <!-- JSON-LD Structured Data for SEO -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+
+
+    <style>
+        body { font-family: 'Poppins', sans-serif; } html { scroll-behavior: smooth; }
+        .prose pre { background-color: #2d3748; color: #e2e8f0; padding: 1rem 1.5rem; border-radius: 0.5rem; overflow-x: auto; font-family: 'Fira Code', monospace; font-size: 0.9em; line-height: 1.6; }
+        .prose code { font-family: 'Fira Code', monospace; background-color: #edf2f7; color: #4a5568; padding: 0.2em 0.4em; border-radius: 0.25rem; font-size: 0.9em; word-break: break-all; hyphens: auto; }
+        .prose pre code { background-color: transparent; color: inherit; padding: 0; border-radius: 0; font-size: inherit; word-break: normal; hyphens: none; }
+        .prose h2 { margin-top: 2em; margin-bottom: 1em; padding-bottom: 0.3em; border-bottom: 1px solid #e2e8f0; }
+        .prose h3 { margin-top: 1.6em; margin-bottom: 0.6em; }
+        .prose a { color: #4f46e5; text-decoration: none; font-weight: 500; } .prose a:hover { text-decoration: underline; }
+        .prose ul { list-style-type: disc; padding-left: 1.5em; }
+    </style>
+
     <script type="application/ld+json">
         {
             "@context": "https://schema.org",
             "@type": "Article",
             "headline": "How I Secure My Laravel + React Apps as a Beginner Developer (Real-World Guide)",
             "description": "A beginner-friendly guide to securing Laravel and React apps with practical tips, tools, and real-world lessons from Anas Ahson.",
-            "image": "https://www.anasahson.dev/images/laravel-react-security-guide.jpg",
+            "image": "https://anasahson.github.io/profile/Anas.png",
             "author": {
                 "@type": "Person",
                 "name": "Anas Ahson",
-                "url": "https://www.anasahson.dev/about",
-                "image": "https://www.anasahson.dev/images/author-anas-ahson.jpg"
+                "url": "https://anasahson.github.io/profile/"
             },
             "publisher": {
-                "@type": "Organization",
-                "name": "Anas Ahson Dev Blog",
+                "@type": "Person",
+                "name": "Anas Ahson",
                 "logo": {
                     "@type": "ImageObject",
-                    "url": "https://www.anasahson.dev/images/logo.png"
+                    "url": "https://anasahson.github.io/profile/Anas.png"
                 }
             },
             "datePublished": "2025-04-05",
             "dateModified": "2025-04-05",
             "mainEntityOfPage": {
                 "@type": "WebPage",
-                "@id": "https://www.anasahson.dev/securing-laravel-react"
+                "@id": "https://anasahson.github.io/profile/secure-laravel-react-apps-beginner-guide-2025.html"
             },
-            "keywords": "Laravel security, React security, beginner developer, full-stack security"
+            "keywords": "Laravel security, React security, beginner developer guide, full-stack security, Laravel Sanctum, DOMPurify"
         }
     </script>
 
-    <!-- CSS Styling -->
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            background-color: #f9f9f9;
-            color: #333;
-        }
-        header {
-            background: #333;
-            color: #fff;
-            padding: 10px 0;
-            text-align: center;
-        }
-        header h1 {
-            margin: 0;
-            font-size: 2rem;
-        }
-        .content {
-            max-width: 900px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        h2, h3 {
-            color: #333;
-        }
-        code {
-            background-color: black;
-            padding: 2px 6px;
-            border-radius: 4px;
-            color: white;
-        }
-        pre {
-            background-color: #2d2d2d;
-            color: #f4f4f4;
-            padding: 20px;
-            border-radius: 4px;
-            overflow-x: auto;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-            font-size: 1rem;
-        }
-        pre code {
-            display: block;
-            color: #f4f4f4;
-            font-size: 1rem;
-        }
-        .author-bio {
-            display: flex;
-            align-items: center;
-            margin-top: 20px;
-            padding: 15px;
-            border-top: 1px solid #eee;
-        }
-        .author-bio img {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            margin-right: 15px;
-        }
-        footer {
-            text-align: center;
-            padding: 20px;
-            background-color: #333;
-            color: #fff;
-        }
-        footer p {
-            margin: 0;
-        }
-    </style>
 </head>
-<body>
-<!-- Header -->
-<header>
-    <h1>How I Secure My Laravel + React Apps as a Beginner Developer (Real-World Guide)</h1>
+<body class="bg-gray-100 text-gray-800 antialiased">
+
+<header class="bg-white shadow-md sticky top-0 z-50">
+    <nav class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+        <a href="index.html" class="text-2xl font-bold text-blue-600">Anas Ahson</a>
+        <button id="mobile-menu-button" class="md:hidden p-2 rounded-md text-gray-500 hover:text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500">
+            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" /></svg>
+        </button>
+        <div class="hidden md:flex space-x-6">
+            <a href="index.html" class="text-gray-600 hover:text-blue-600 font-medium">Home</a>
+            <a href="about-anas-ahson.html" class="text-gray-600 hover:text-blue-600 font-medium">About</a>
+            <a href="services.html" class="text-gray-600 hover:text-blue-600 font-medium">Services</a>
+            <a href="blog.html" class="text-blue-600 border-b-2 border-blue-600 font-semibold">Blog</a> <a href="contact.html" class="text-gray-600 hover:text-blue-600 font-medium">Contact</a>
+        </div>
+    </nav>
+    <div id="mobile-menu" class="md:hidden hidden">
+        <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+            <a href="index.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50">Home</a>
+            <a href="about-anas-ahson.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50">About</a>
+            <a href="services.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50">Services</a>
+            <a href="blog.html" class="block px-3 py-2 rounded-md text-base font-medium text-blue-600 bg-blue-50">Blog</a> <a href="contact.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50">Contact</a>
+        </div>
+    </div>
 </header>
 
-<!-- Main Content -->
-<div class="content">
-    <p>As a beginner web developer, I <strong>used to overlook security</strong>. I assumed "Laravel handles most of it" or "React is just frontend — no big deal."</p>
-    <p><strong>That changed when my first full-stack app got hit with fake signups and odd requests. Security isn’t optional.</strong></p>
-
-    <h2>Securing Laravel: Lessons from My Mistakes</h2>
-    <h3>1. Laravel Sanctum for Easy API Authentication</h3>
-    <p>Connecting React to Laravel APIs was a mess until I found <strong>Laravel Sanctum</strong>. I struggled with token management, CSRF errors, and unprotected routes.</p>
-    <pre><code>composer require laravel/sanctum</code></pre>
-    <p>In <code>routes/api.php</code>:</p>
-    <pre><code>Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+<main class="py-12 md:py-16">
+    <article class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl bg-white py-8 sm:py-12 px-6 sm:px-10 rounded-lg shadow-lg">
+        <header class="mb-8 border-b pb-6 border-gray-200">
+            <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 leading-tight">How I Secure My Laravel + React Apps as a Beginner Developer (Real-World Guide)</h1>
+            <p class="text-gray-500 text-base">
+                Published on <time datetime="2025-04-05">April 05, 2025</time> by Anas Ahson
+            </p>
+        </header>
+        <div class="prose prose-lg prose-indigo max-w-none text-gray-700">
+            <p>As a beginner web developer, I <strong>used to overlook security</strong>. I assumed "Laravel handles most of it" or "React is just frontend — no big deal."</p>
+            <p><strong>That changed when my first full-stack app got hit with fake signups and odd requests. Security isn’t optional.</strong></p>
+            <h2>Securing Laravel: Lessons from My Mistakes</h2>
+            <h3>1. Laravel Sanctum for Easy API Authentication</h3>
+            <p>Connecting React to Laravel APIs was a mess until I found <strong>Laravel Sanctum</strong>. I struggled with token management, CSRF errors, and unprotected routes.</p>
+            <pre><code class="language-bash">composer require laravel/sanctum</code></pre>
+            <p>In <code>routes/api.php</code>:</p>
+            <pre><code class="language-php">Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });</code></pre>
-    <p><strong>Tip:</strong> Test routes with and without tokens. I once skipped middleware, and my endpoint was wide open.</p>
-
-    <h3>2. Composer Security Checker</h3>
-    <p>I used an outdated package with a vulnerability — unknowingly. Now, I run this before deploying:</p>
-    <pre><code>composer require enlightn/security-checker --dev
+            <p><strong>Tip:</strong> Test routes with and without tokens. I once skipped middleware, and my endpoint was wide open.</p>
+            <h3>2. Composer Security Checker</h3>
+            <p>I used an outdated package with a vulnerability — unknowingly. Now, I run this before deploying:</p>
+            <pre><code class="language-bash">composer require enlightn/security-checker --dev
 php artisan security:check</code></pre>
-    <p><strong>Lesson:</strong> Outdated packages can silently compromise your app.</p>
-
-    <h3>3. Debug Mode in Production</h3>
-    <p>I shipped a project with <code>APP_DEBUG=true</code>, exposing stack traces publicly. Now, I ensure <code>APP_DEBUG=false</code> before every deployment.</p>
-
-    <h2>Securing React: Client-Side Isn’t Safe Either</h2>
-    <h3>1. DOMPurify Against XSS Attacks</h3>
-    <p>My React comment box used <code>dangerouslySetInnerHTML</code>. Someone tested this:</p>
-
-    <p>I now sanitize inputs with:</p>
-    <pre><code>import DOMPurify from 'dompurify';
+            <p><strong>Lesson:</strong> Outdated packages can silently compromise your app.</p>
+            <h3>3. Debug Mode in Production</h3>
+            <p>I shipped a project with <code>APP_DEBUG=true</code>, exposing stack traces publicly. Now, I ensure <code>APP_DEBUG=false</code> before every deployment.</p>
+            <h2>Securing React: Client-Side Isn’t Safe Either</h2>
+            <h3>1. DOMPurify Against XSS Attacks</h3>
+            <p>My React comment box used <code>dangerouslySetInnerHTML</code>. Someone tested this:</p>
+            <pre><code class="language-html">&lt;img src=x onerror=alert('XSS-attack!')&gt;</code></pre>
+            <p>I now sanitize inputs with:</p>
+            <pre><code class="language-javascript">import DOMPurify from 'dompurify';
 const cleanHTML = DOMPurify.sanitize(userInput);</code></pre>
-    <p><strong>Takeaway:</strong> Never trust user input, even from logged-in users.</p>
-
-    <h3>2. Axios with CSRF and Tokens</h3>
-    <p>CSRF errors with Laravel Sanctum were brutal. Here’s the fix:</p>
-    <pre><code>axios.get('/sanctum/csrf-cookie').then(() => {
+            <p><strong>Takeaway:</strong> Never trust user input, even from logged-in users.</p>
+            <h3>2. Axios with CSRF and Tokens</h3>
+            <p>CSRF errors with Laravel Sanctum were brutal. Here’s the fix:</p>
+            <pre><code class="language-javascript">axios.get('/sanctum/csrf-cookie').then(() => {
   axios.post('/login', credentials).then(...);
 });
 axios.defaults.withCredentials = true;</code></pre>
-    <p><strong>Mistake:</strong> Forgetting <code>withCredentials</code> cost me an hour of debugging 401 errors.</p>
-
-    <h2>My Full-Stack Security Habits</h2>
-    <h3>1. Laravel Telescope for Monitoring</h3>
-    <p>In dev mode, Telescope tracks API requests, auth attempts, and failed logins:</p>
-    <pre><code>composer require laravel/telescope --dev
+            <p><strong>Mistake:</strong> Forgetting <code>withCredentials</code> cost me an hour of debugging 401 errors.</p>
+            <h2>My Full-Stack Security Habits</h2>
+            <h3>1. Laravel Telescope for Monitoring</h3>
+            <p>In dev mode, Telescope tracks API requests, auth attempts, and failed logins:</p>
+            <pre><code class="language-bash">composer require laravel/telescope --dev
 php artisan telescope:install</code></pre>
-    <p>It caught someone brute-forcing tokens on my API.</p>
-
-    <h3>2. Deployment Security Checklist</h3>
-    <ul>
-        <li>✅ HTTPS enabled</li>
-        <li>✅ <code>APP_DEBUG=false</code></li>
-        <li>✅ <code>.env</code> in <code>.gitignore</code></li>
-        <li>✅ Run <code>php artisan security:check</code></li>
-        <li>✅ DOMPurify on React inputs</li>
-        <li>✅ Axios with <code>withCredentials</code></li>
-        <li>✅ Check headers on <a href="https://securityheaders.com">securityheaders.com</a></li>
-    </ul>
-
-    <h2>Final Thoughts: Security is a Journey</h2>
-    <p><strong>Security isn’t a one-time fix — it’s a skill built over time.</strong> Test like a hacker, patch what breaks, and repeat.</p>
-    <p>Want the codebase? Let me know, and I’ll share it on GitHub!</p>
-
-    <!-- Author Bio Section -->
-    <div class="author-bio">
-        <img src="Anas.png" alt="Anas Ahson Profile Picture">
-        <div>
-            <h3>About the Author: Anas Ahson</h3>
-            <p>Anas Ahson is a beginner web developer passionate about full-stack development with Laravel and React. He shares practical lessons from his coding journey on <a href="#"> anasahson</a>.</p>
-            <a href="https://anasahson.github.io/profile" ><button >Back Home</button> </a>
+            <p>It caught someone brute-forcing tokens on my API.</p>
+            <h3>2. Deployment Security Checklist</h3>
+            <ul>
+                <li>✅ HTTPS enabled</li>
+                <li>✅ <code>APP_DEBUG=false</code></li>
+                <li>✅ <code>.env</code> in <code>.gitignore</code></li>
+                <li>✅ Run <code>php artisan security:check</code></li>
+                <li>✅ DOMPurify on React inputs</li>
+                <li>✅ Axios with <code>withCredentials</code></li>
+                <li>✅ Check headers on <a href="https://securityheaders.com" target="_blank" rel="noopener noreferrer">securityheaders.com</a></li>
+            </ul>
+            <h2>Final Thoughts: Security is a Journey</h2>
+            <p><strong>Security isn’t a one-time fix — it’s a skill built over time.</strong> Test like a hacker, patch what breaks, and repeat.</p>
+            <p>Want the codebase? Let me know, and I’ll share it on GitHub!</p>
         </div>
+        <div class="mt-10 pt-6 border-t border-gray-200">
+            <h4 class="text-base font-semibold text-gray-600 mb-3">Tags:</h4>
+            <div class="flex flex-wrap gap-2">
+                <a href="#" class="inline-block bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full hover:bg-blue-200 transition duration-300">Laravel</a>
+                <a href="#" class="inline-block bg-sky-100 text-sky-800 text-sm font-medium px-3 py-1 rounded-full hover:bg-sky-200 transition duration-300">React</a>
+                <a href="#" class="inline-block bg-red-100 text-red-800 text-sm font-medium px-3 py-1 rounded-full hover:bg-red-200 transition duration-300">Security</a>
+                <a href="#" class="inline-block bg-green-100 text-green-800 text-sm font-medium px-3 py-1 rounded-full hover:bg-green-200 transition duration-300">Beginner Guide</a>
+                <a href="#" class="inline-block bg-purple-100 text-purple-800 text-sm font-medium px-3 py-1 rounded-full hover:bg-purple-200 transition duration-300">Full-Stack</a>
+            </div>
+        </div>
+        <div class="mt-10 pt-8 border-t border-gray-200 flex items-start sm:items-center space-x-4 flex-col sm:flex-row">
+            <img src="Anas.png" alt="Anas Ahson Profile Picture" class="w-16 h-16 rounded-full mb-4 sm:mb-0 flex-shrink-0"> <div>
+            <h4 class="text-lg font-semibold text-gray-800">About Anas Ahson</h4>
+            <p class="text-gray-600 text-sm">
+                Anas Ahson is a Full Stack Developer specializing in Laravel and PHP, passionate about building efficient web solutions and sharing knowledge through articles like this one.
+            </p>
+            <a href="about.html" class="text-sm text-blue-600 hover:underline mt-1 inline-block">More about the author &rarr;</a>
+        </div>
+        </div>
+        <div class="mt-12 pt-6 border-t border-gray-200">
+            <a href="blog.html" class="text-blue-600 hover:text-blue-800 font-semibold">&larr; Back to Blog List</a>
+        </div>
+    </article>
+</main>
 
+<footer class="bg-gray-800 text-gray-300 py-8 mt-16">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div class="flex justify-center space-x-6 mb-4">
+            <a href="https://www.linkedin.com/in/anas-ahson-736607339/" target="_blank" rel="noopener noreferrer" class="hover:text-blue-400 transition duration-300">LinkedIn</a>
+            <a href="https://www.quora.com/profile/Anas-Ahson-Web-Developer" target="_blank" rel="noopener noreferrer" class="hover:text-red-400 transition duration-300">Quora</a>
+            <a href="https://x.com/anasahson92" target="_blank" rel="noopener noreferrer" class="hover:text-blue-300 transition duration-300">Twitter</a>
+        </div>
+        <p class="mb-2">Email: <a href="mailto:anasahson92@gmail.com" class="hover:text-white">anasahson92@gmail.com</a></p>
+        <p class="text-sm text-gray-400">&copy; 2025 Anas Ahson. All Rights Reserved.</p>
     </div>
-</div>
-
-<!-- Footer -->
-<footer>
-    <p>© 2025 Anas Ahson | All Rights Reserved</p>
 </footer>
+
+<script>
+    const menuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    menuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+</script>
+
 </body>
 </html>
