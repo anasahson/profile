@@ -6,12 +6,12 @@
     <title>Blog | Anas Ahson - Full Stack Developer</title>
     <meta content="Read articles and tutorials on web development, Laravel, PHP, security, and more from Anas Ahson."
           name="description"/>
-    <meta content="Web Development Blog, Laravel Blog, PHP Blog, Full Stack Development Articles, Anas Ahson"
+    <meta content="Web Development Blog, Laravel Blog, PHP Blog, Full Stack Development Articles, Anas Ahson, Website Templates"
           name="keywords"/>
     <meta content="Anas Ahson" name="author"/>
     <link href="https://anasahson.github.io/profile/blog.html" rel="canonical"/>
     <meta content="Blog - Anas Ahson | Web Development Insights" property="og:title"/>
-    <meta content="Articles on Laravel, PHP, React, security, and web development best practices."
+    <meta content="Articles on Laravel, PHP, React, security, website templates, and web development best practices."
           property="og:description"/>
     <meta content="https://anasahson.github.io/profile/Anas.png" property="og:image"/>
     <meta content="https://anasahson.github.io/profile/blog.html" property="og:url"/>
@@ -19,7 +19,7 @@
 
     <meta content="summary_large_image" name="twitter:card">
     <meta content="Blog - Anas Ahson | Web Development Insights" name="twitter:title">
-    <meta content="Articles on Laravel, PHP, React, security, and web development best practices."
+    <meta content="Articles on Laravel, PHP, React, security, website templates, and web development best practices."
           name="twitter:description">
     <meta content="https://anasahson.github.io/profile/Anas.png" name="twitter:image">
     <meta content="@anasahson92" name="twitter:creator">
@@ -41,7 +41,7 @@
             "@context": "https://schema.org",
             "@type": "CollectionPage",
             "name": "Anas Ahson - Blog",
-            "description": "Blog articles by Anas Ahson on web development, Laravel, PHP, and related technologies.",
+            "description": "Blog articles by Anas Ahson on web development, Laravel, PHP, website templates, and related technologies.",
             "url": "https://anasahson.github.io/profile/blog.html",
             "author": {
                 "@type": "Person",
@@ -49,7 +49,7 @@
             },
             "publisher": {
                 "@type": "Person",
-                "name": "Anas Ahson"
+                "name": "Anas Ahson" // Using Person as per your previous structure
             },
             "mainEntity": {
                 "@type": "ItemList",
@@ -80,14 +80,25 @@
                         "item": {
                             "@type": "Article",
                             "@id": "https://anasahson.github.io/profile/laravel-12-authentication-starter-kits-guide-2025.html",
-                            "headline": "Laravel 12 Auth Demystified: Starter Kits, Sanctum, Confusions Cleared (2025)",
+                            "headline": "Laravel 12 Auth Demystified: Guide (2025)", // Updated headline slightly to match card
                             "url": "https://anasahson.github.io/profile/laravel-12-authentication-starter-kits-guide-2025.html"
+                        }
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 4,
+                        "item": {
+                            "@type": "Article",
+                            "@id": "https://anasahson.github.io/profile/website-templates-developer-guide-2025.html", // Ensure this matches the article page URL
+                            "headline": "Website Templates: Your Practical Guide to Choosing Wisely (From a Developer's Desk)", // Use the full, updated headline
+                            "url": "https://anasahson.github.io/profile/website-templates-developer-guide-2025.html" // Ensure this matches the article page URL
                         }
                     }
                 ]
             }
         }
     </script>
+    <script src="https://cdn.tailwindcss.com"></script>
 
 </head>
 <body class="bg-gray-50 text-gray-800 antialiased">
@@ -137,6 +148,30 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+
+                <div class="bg-gray-50 rounded-lg shadow-md hover:shadow-xl transition duration-300 flex flex-col border border-gray-200 p-6">
+                    <div class="mb-2 text-sm text-gray-500">
+                        <span>Published: May 01, 2025</span> | <span>By: Anas Ahson</span>
+                    </div>
+                    <h2 class="text-xl lg:text-2xl font-semibold mb-3 text-gray-900 hover:text-blue-700 transition duration-300">
+                        <a href="website-templates-developer-guide-2025.html">
+                            Website Templates: Your Practical Guide to Choosing Wisely (From a Developer's Desk)
+                        </a>
+                    </h2>
+                    <p class="text-gray-600 mb-4 flex-grow">Practical advice from a web developer on navigating the world of website templates – what works, what doesn't, and how to get the best value.</p>
+                    <div class="mb-4">
+                        <span class="inline-block bg-blue-100 text-blue-800 text-xs font-medium mr-2 mb-2 px-2.5 py-0.5 rounded-full">Website Templates</span>
+                        <span class="inline-block bg-sky-100 text-sky-800 text-xs font-medium mr-2 mb-2 px-2.5 py-0.5 rounded-full">Web Development</span>
+                        <span class="inline-block bg-green-100 text-green-800 text-xs font-medium mr-2 mb-2 px-2.5 py-0.5 rounded-full">Web Design</span>
+                        <span class="inline-block bg-purple-100 text-purple-800 text-xs font-medium mr-2 mb-2 px-2.5 py-0.5 rounded-full">Developer Guide</span>
+                    </div>
+                    <div class="mt-auto">
+                        <a class="inline-block bg-blue-600 text-white hover:bg-blue-700 text-sm font-semibold px-5 py-2 rounded-md transition duration-300 shadow hover:shadow-md"
+                           href="website-templates-developer-guide-2025.html">
+                            Read More</a>
+                    </div>
+                </div>
+
 
                 <div class="bg-gray-50 rounded-lg shadow-md hover:shadow-xl transition duration-300 flex flex-col border border-gray-200 p-6">
                     <div class="mb-2 text-sm text-gray-500">
@@ -253,7 +288,7 @@
     const mobileMenu = document.getElementById('mobile-menu');
     menuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
 </script>
-<script src="https://cdn.tailwindcss.com"></script>
+
 
 </body>
 </html>
